@@ -77,10 +77,8 @@ def main():
         print("Not connected.")
     else:
         degrees = len(path)
-        print(f"{degrees} degrees of separation.")
-        print(f'degress {path}')
         path = [(None, source)] + path
-        print(path)
+    
         for i in range(degrees):
             person1 = people[path[i][1]]["name"]
             person2 = people[path[i + 1][1]]["name"]
@@ -96,7 +94,7 @@ def shortest_path(source, goal):
     If no possible path, returns None.
     """
     start = Node(state=source, parent=None, action=None)
-    select =input('Using stackFrontier or QueueFrontier?:[stack/queue]')
+    select = input('Using stackFrontier or QueueFrontier?[stack/queue]: ')
     if select == 'stack':
         frontier = StackFrontier()
     else:
@@ -109,7 +107,7 @@ def shortest_path(source, goal):
 
             # If nothing left in frontier, then no path
             if frontier.empty():
-                raise Exception("no solution")
+                return None
 
             # Choose a node from the frontier
             node = frontier.remove()
